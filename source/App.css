@@ -9,9 +9,10 @@
 	padding: 16px;
 }
 #recipe {
-	margin: 16px;
-	border - radius: 4px;
-	background-color: #FFF333;
-	padding: 14px;
+	margin: 1px;
+	border-radius: 4px;
+	background-color: white;
+	padding: 1px;
+	height: 50%;
 }
 
