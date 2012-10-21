@@ -17,7 +17,12 @@
 	</head>
 	<body class="enyo-unselectable">
 		<script>
-			list.renderInto(document.body);
+			
+			var t = new Tweet({
+				icon: "touchhead_sq_normal.jpg",
+				handle: "unwiredben",
+				text: "This is my tweet"});
+			t.renderInto(document.body);
 
 		</script>
 	</body>

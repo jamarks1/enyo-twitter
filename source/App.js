@@ -11,5 +11,6 @@ var list = new enyo.Control({
 
 list.$.green.applyStyle("color", "green");
 list.$.blue.applyStyle("color", "blue");
+list.applyStyle("color", "purple");
 	
 
