@@ -5,5 +5,5 @@ enyo.depends(
 	"App.css",
 	"App.js",
 	"tweet.js",
-	"TweetApp.js"
+	"TwitterSearchApp.js"
 );

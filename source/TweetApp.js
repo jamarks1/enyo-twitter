@@ -19,5 +19,4 @@ enyo.kind({
 	this.$.tweetList.render();
 	}
 });
-var tweetApp = new TweetApp();
-tweetApp.renderInto(document.body)
+
