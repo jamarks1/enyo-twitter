@@ -1,9 +1,12 @@
 enyo.kind({
 	name: "TwitterSearchApp",
 	kind: enyo.Control,
+	classes: "onyx",
 	components: [
-		{tag: "input", name: "searchTerm"},
-		{tag: "button", content: "Search", ontap: "search"},
+		{kind: "onyx.Input", name: "searchTerm", placeholder: "Search on Twitter", onkeydown: "searchOnEnter"},
+		{kind: "onyx.Button", content: "Search", ontap: "search"},
+		{tag: "p", content: "Filter by Popular Searches only"},
+		{kind:"onyx.ToggleButton", name:"popularOnly", value: true},
 		{tag: "div", name: "tweetList"}
 	],
 
@@ -19,13 +22,20 @@ enyo.kind({
 
 	search: function(){
 		var searchTerm = this.$.searchTerm.hasNode().value;
+		var popular = "";
 		var request = new enyo.JsonpRequest({
 			url: "http://search.twitter.com/search.json",
-			callbackName: "callback"
+			callbackName: "callback",
+			result_type: "popular"
 	});
-
+		if (this.$.popularOnly.value === true) {
+			popular = "popular";
+		}
+		else {
+			popular = "mixed";
+		}
 	request.response(enyo.bind(this, "processSearchResults"));
-	request.go({ q: searchTerm });
+	request.go({ q: searchTerm, result_type: popular } );
 	},
 
 	processSearchResults: function(inRequest, inResponse) {
