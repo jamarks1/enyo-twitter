@@ -1,14 +1,27 @@
 enyo.kind({
 	name: "TwitterSearchApp",
-	kind: enyo.Control,
+	kind: enyo.FittableRows,
 	classes: "onyx",
 	components: [
-		{kind: "onyx.Input", name: "searchTerm", placeholder: "Search on Twitter", onkeydown: "searchOnEnter"},
-		{kind: "onyx.Button", content: "Search", ontap: "search"},
-		{tag: "p", content: "Filter by Popular Searches only"},
-		{kind:"onyx.ToggleButton", name:"popularOnly", value: true},
+		{kind: "onyx.Toolbar", components: [
+		{kind: "onyx.InputDecorator", components: [
+			{kind: "onyx.Input", name: "searchTerm", placeholder: "Search on Twitter", onkeydown: "searchOnEnter"},
+			{kind: "Image", src: "search-input-search.png", ontap: "search"}
+		]},
+		{tag: "p", content: "Popular only"},
+		{kind:"onyx.ToggleButton", name:"popularOnly", value: false},
+		
+	]},
+		{kind: "enyo.Scroller", fit:true, components: [
 		{tag: "div", name: "tweetList"}
+		]}
 	],
+	searchOnEnter: function(inSender, inEvent) {
+			if (inEvent.keyCode === 13) {
+				this.search();
+				return true;
+			}
+	},
 
 	addTweet: function(inResult) {
 		this.createComponent({
